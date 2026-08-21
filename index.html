@@ -18,11 +18,102 @@
             color: #1f2937;
         }
 
+        /* ================= LOGIN PAGE ================= */
+
+        #login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f172a, #1e40af);
+            padding: 20px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            border-radius: 18px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+            text-align: center;
+        }
+
+        .login-logo {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .login-box h1 {
+            margin: 5px 0 8px;
+            color: #0f172a;
+            font-size: 25px;
+        }
+
+        .login-box p {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .login-box input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .login-button {
+            width: 100%;
+            border: none;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background: #1d4ed8;
+        }
+
+        #login-error {
+            color: #dc2626;
+            font-size: 14px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        /* ================= MAIN PAGE ================= */
+
+        #main-page {
+            display: none;
+        }
+
         header {
             background: linear-gradient(135deg, #0f172a, #1e40af);
             color: white;
-            padding: 45px 20px;
+            padding: 35px 20px;
             text-align: center;
+            position: relative;
+        }
+
+        .header-logo {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            margin-bottom: 10px;
         }
 
         header h1 {
@@ -34,6 +125,22 @@
             margin: 0;
             opacity: 0.85;
             font-size: 16px;
+        }
+
+        .logout-button {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 14px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .logout-button:hover {
+            background: rgba(255,255,255,0.25);
         }
 
         .container {
@@ -97,6 +204,7 @@
             background: #f8fafc;
             padding: 12px;
             border-radius: 8px;
+            word-break: break-word;
         }
 
         .detail strong {
@@ -131,12 +239,18 @@
         }
 
         @media (max-width: 600px) {
+
             header h1 {
-                font-size: 26px;
+                font-size: 25px;
             }
 
             .details {
                 grid-template-columns: 1fr;
+            }
+
+            .logout-button {
+                position: static;
+                margin-bottom: 15px;
             }
         }
     </style>
@@ -144,138 +258,327 @@
 
 <body>
 
-<header>
-    <h1>Silicon Harvest R&D Firmware Downloads</h1>
-    <p>Official firmware download center</p>
-</header>
 
-<div class="container">
+<!-- ============================================================
+     LOGIN PAGE
+     ============================================================ -->
 
-    <div class="info">
-        <h2>Firmware Downloads</h2>
+<div id="login-page">
 
-        <p>
-            Download the latest firmware for your SH RD device.
-            Please verify the device model and firmware version
-            before installation.
-        </p>
+    <div class="login-box">
+
+        <img
+            src="logo.png"
+            alt="Silicon Harvest R&D Logo"
+            class="login-logo"
+        >
+
+        <h1>Silicon Harvest R&D</h1>
+
+        <p>Firmware Download Center</p>
+
+        <input
+            type="text"
+            id="username"
+            placeholder="Username"
+            autocomplete="username"
+        >
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            autocomplete="current-password"
+        >
+
+        <button
+            class="login-button"
+            onclick="login()"
+        >
+            Login
+        </button>
+
+        <div id="login-error">
+            Invalid username or password.
+        </div>
+
     </div>
-
-    <div id="firmware-list"></div>
 
 </div>
 
-<footer>
-    © 2026 SiliconRnD · SH RD Firmware
-</footer>
+
+<!-- ============================================================
+     MAIN PAGE
+     ============================================================ -->
+
+<div id="main-page">
+
+    <header>
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+        <img
+            src="logo.png"
+            alt="Silicon Harvest R&D Logo"
+            class="header-logo"
+        >
+
+        <h1>Silicon Harvest R&D Firmware Downloads</h1>
+
+        <p>Official firmware download center</p>
+
+    </header>
+
+
+    <div class="container">
+
+        <div class="info">
+
+            <h2>Firmware Downloads</h2>
+
+            <p>
+                Download the latest firmware for your SH RD device.
+                Please verify the device model and firmware version
+                before installation.
+            </p>
+
+        </div>
+
+        <div id="firmware-list"></div>
+
+    </div>
+
+
+    <footer>
+        © 2026 SiliconRnD · SH RD Firmware
+    </footer>
+
+</div>
 
 
 <script>
 
-    /*
-     * ============================================================
-     * FIRMWARE FILES
-     * ============================================================
-     *
-     * Change the information below to match the .bin files
-     * inside your repository's "files" folder.
-     *
-     * Example:
-     *
-     * files/
-     *   SH_RD_v1.0.0.bin
-     *   SH_RD_v1.1.0.bin
-     */
+/* ============================================================
+   LOGIN SETTINGS
 
-    const firmwares = [
+   Default username: admin
+   Default password: admin123
 
-        {
-            name: "Old BDC ESP32 & STM32",
-            version: "v1.3.1",
-            file: "SRC_ESP_RTOS_STM32_2_5_OTA_fix.ino.zip",
-            date: "2026-08-21",
-            description: "Final firmware release"
-        },
+   IMPORTANT:
+   This is client-side authentication only.
+   It is NOT suitable for protecting confidential files.
+   ============================================================ */
 
-        {
-            name: "SH Digital Divine Bell",
-            version: "v1.5.0",
-            file: "SRC_KR_stm32_USB_SD.ino.bin",
-            date: "2026-08-21",
-            description: "Latest firmware release"
-        },
-
-        {
-            name: "SH GSM Switch 2.0",
-            version: "v1.5.0",
-            file: "SRC_GSM_switch_Stm32_2_5_pnp.ino.bin",
-            date: "2026-08-21",
-            description: "Latest firmware release"
-        }
-
-    ];
+const LOGIN_USERNAME = "admin";
+const LOGIN_PASSWORD = "admin123";
 
 
-    /*
-     * ============================================================
-     * DO NOT EDIT BELOW THIS LINE
-     * ============================================================
-     */
+/* ============================================================
+   LOGIN FUNCTION
+   ============================================================ */
 
-    const container = document.getElementById("firmware-list");
+function login() {
 
-    firmwares.forEach((firmware) => {
+    const username =
+        document.getElementById("username").value;
 
-        const card = document.createElement("div");
-        card.className = "firmware";
+    const password =
+        document.getElementById("password").value;
 
-        card.innerHTML = `
-            <div class="firmware-header">
+    const error =
+        document.getElementById("login-error");
 
-                <h3>${firmware.name}</h3>
 
-                <span class="version">
-                    ${firmware.version}
-                </span>
+    if (
+        username === LOGIN_USERNAME &&
+        password === LOGIN_PASSWORD
+    ) {
+
+        sessionStorage.setItem(
+            "shrd_logged_in",
+            "true"
+        );
+
+        showMainPage();
+
+    } else {
+
+        error.style.display = "block";
+
+    }
+}
+
+
+/* ============================================================
+   SHOW MAIN PAGE
+   ============================================================ */
+
+function showMainPage() {
+
+    document.getElementById("login-page").style.display = "none";
+
+    document.getElementById("main-page").style.display = "block";
+
+}
+
+
+/* ============================================================
+   LOGOUT
+   ============================================================ */
+
+function logout() {
+
+    sessionStorage.removeItem("shrd_logged_in");
+
+    document.getElementById("main-page").style.display = "none";
+
+    document.getElementById("login-page").style.display = "flex";
+
+    document.getElementById("username").value = "";
+
+    document.getElementById("password").value = "";
+
+}
+
+
+/* ============================================================
+   CHECK EXISTING LOGIN
+   ============================================================ */
+
+if (
+    sessionStorage.getItem("shrd_logged_in") === "true"
+) {
+
+    showMainPage();
+
+}
+
+
+/* ============================================================
+   FIRMWARE FILES
+   ============================================================ */
+
+const firmwares = [
+
+    {
+        name: "Old BDC ESP32 & STM32",
+        version: "v1.3.1",
+        file: "SRC_ESP_RTOS_STM32_2_5_OTA_fix.ino.zip",
+        date: "2026-08-21",
+        description: "Final firmware release"
+    },
+
+    {
+        name: "SH Digital Divine Bell",
+        version: "v1.5.0",
+        file: "SRC_KR_stm32_USB_SD.ino.bin",
+        date: "2026-08-21",
+        description: "Latest firmware release"
+    },
+
+    {
+        name: "SH GSM Switch 2.0",
+        version: "v1.5.0",
+        file: "SRC_GSM_switch_Stm32_2_5_pnp.ino.bin",
+        date: "2026-08-21",
+        description: "Latest firmware release"
+    }
+
+];
+
+
+/* ============================================================
+   DISPLAY FIRMWARE
+   ============================================================ */
+
+const container =
+    document.getElementById("firmware-list");
+
+
+firmwares.forEach((firmware) => {
+
+    const card =
+        document.createElement("div");
+
+    card.className = "firmware";
+
+
+    card.innerHTML = `
+
+        <div class="firmware-header">
+
+            <h3>
+                ${firmware.name}
+            </h3>
+
+            <span class="version">
+                ${firmware.version}
+            </span>
+
+        </div>
+
+
+        <p>
+            ${firmware.description}
+        </p>
+
+
+        <div class="details">
+
+            <div class="detail">
+
+                <strong>
+                    Version
+                </strong>
+
+                ${firmware.version}
 
             </div>
 
-            <p>
-                ${firmware.description}
-            </p>
 
-            <div class="details">
+            <div class="detail">
 
-                <div class="detail">
-                    <strong>Version</strong>
-                    ${firmware.version}
-                </div>
+                <strong>
+                    Release Date
+                </strong>
 
-                <div class="detail">
-                    <strong>Release Date</strong>
-                    ${firmware.date}
-                </div>
-
-                <div class="detail">
-                    <strong>File</strong>
-                    ${firmware.file}
-                </div>
+                ${firmware.date}
 
             </div>
 
-            <a
-                class="download"
-                href="files/${encodeURIComponent(firmware.file)}"
-                download
-            >
-                ⬇ Download Firmware
-            </a>
 
-        `;
+            <div class="detail">
 
-        container.appendChild(card);
+                <strong>
+                    File
+                </strong>
 
-    });
+                ${firmware.file}
+
+            </div>
+
+        </div>
+
+
+        <a
+            class="download"
+            href="files/${encodeURIComponent(firmware.file)}"
+            download
+        >
+            ⬇ Download Firmware
+        </a>
+
+    `;
+
+
+    container.appendChild(card);
+
+});
 
 </script>
 
