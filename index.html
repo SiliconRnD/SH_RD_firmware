@@ -1,262 +1,774 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Silicon Harvest R&D Firmware Downloads</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Silicon Harvest R&D Downloads
+    </title>
+
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
+
         body {
+
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
             background: #f4f7fb;
+
             color: #1f2937;
+
         }
 
-        /* ================= LOGIN PAGE ================= */
+
+        /* ============================================================
+           LOGIN PAGE
+           ============================================================ */
 
         #login-page {
+
             min-height: 100vh;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
-            background: linear-gradient(135deg, #0f172a, #1e40af);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e40af
+                );
+
             padding: 20px;
+
         }
+
 
         .login-box {
+
             width: 100%;
+
             max-width: 420px;
+
             background: white;
+
             border-radius: 18px;
+
             padding: 40px 30px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+
+            box-shadow:
+                0 15px 50px
+                rgba(0, 0, 0, 0.25);
+
             text-align: center;
+
         }
+
 
         .login-logo {
+
             width: 300px;
+
             max-width: 85%;
+
             height: auto;
+
             object-fit: contain;
+
             margin-bottom: 20px;
+
         }
+
 
         .login-box h1 {
-            margin: 5px 0 8px;
+
+            margin:
+                5px
+                0
+                8px;
+
             color: #0f172a;
+
             font-size: 25px;
+
         }
+
 
         .login-box p {
+
             color: #64748b;
+
             margin-bottom: 25px;
+
         }
+
 
         .login-box input {
+
             width: 100%;
+
             padding: 14px;
+
             margin-bottom: 14px;
-            border: 1px solid #cbd5e1;
+
+            border:
+                1px solid
+                #cbd5e1;
+
             border-radius: 8px;
+
             font-size: 15px;
+
             outline: none;
+
         }
+
 
         .login-box input:focus {
+
             border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37, 99, 235, 0.12);
+
         }
+
 
         .login-button {
+
             width: 100%;
+
             border: none;
+
             padding: 14px;
+
             background: #2563eb;
+
             color: white;
+
             border-radius: 8px;
+
             font-size: 16px;
+
             font-weight: bold;
+
             cursor: pointer;
+
         }
+
 
         .login-button:hover {
+
             background: #1d4ed8;
+
         }
+
 
         #login-error {
+
             color: #dc2626;
+
             font-size: 14px;
+
             margin-top: 15px;
+
             display: none;
+
         }
 
-        /* ================= MAIN PAGE ================= */
+
+        /* ============================================================
+           MAIN PAGE
+           ============================================================ */
 
         #main-page {
+
             display: none;
+
         }
+
 
         header {
-            background: linear-gradient(135deg, #0f172a, #1e40af);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e40af
+                );
+
             color: white;
+
             padding: 35px 20px;
+
             text-align: center;
+
             position: relative;
+
         }
+
 
         .header-logo {
+
             width: 280px;
+
             max-width: 80%;
+
             height: auto;
+
             object-fit: contain;
+
             margin-bottom: 15px;
+
         }
+
 
         header h1 {
-            margin: 0 0 10px;
+
+            margin:
+                0
+                0
+                10px;
+
             font-size: 32px;
+
         }
+
 
         header p {
+
             margin: 0;
+
             opacity: 0.85;
+
             font-size: 16px;
+
         }
+
 
         .logout-button {
+
             position: absolute;
+
             right: 20px;
+
             top: 20px;
-            background: rgba(255,255,255,0.15);
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.15
+                );
+
             color: white;
-            border: 1px solid rgba(255,255,255,0.3);
-            padding: 8px 14px;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.3
+                );
+
+            padding:
+                8px
+                14px;
+
             border-radius: 7px;
+
             cursor: pointer;
+
         }
+
 
         .logout-button:hover {
-            background: rgba(255,255,255,0.25);
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.25
+                );
+
         }
+
+
+        /* ============================================================
+           MAIN CONTAINER
+           ============================================================ */
 
         .container {
+
             max-width: 900px;
+
             margin: 35px auto;
-            padding: 0 20px;
+
+            padding:
+                0
+                20px;
+
         }
+
+
+        /* ============================================================
+           CATEGORY NAVIGATION
+           ============================================================ */
+
+        .category-nav {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .category-button {
+
+            border: none;
+
+            padding:
+                12px
+                20px;
+
+            border-radius: 8px;
+
+            background: #e2e8f0;
+
+            color: #334155;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                0.2s;
+
+        }
+
+
+        .category-button:hover {
+
+            background: #cbd5e1;
+
+        }
+
+
+        .category-button.active {
+
+            background: #2563eb;
+
+            color: white;
+
+        }
+
+
+        /* ============================================================
+           INFO BOX
+           ============================================================ */
 
         .info {
+
             background: white;
+
             border-radius: 12px;
+
             padding: 22px;
+
             margin-bottom: 25px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+
+            box-shadow:
+                0 3px 15px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.07
+                );
+
         }
+
 
         .info h2 {
+
             margin-top: 0;
+
             color: #1e40af;
+
         }
+
+
+        /* ============================================================
+           FIRMWARE CARD
+           ============================================================ */
 
         .firmware {
+
             background: white;
+
             border-radius: 14px;
+
             padding: 25px;
+
             margin-bottom: 20px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-            border-left: 5px solid #2563eb;
+
+            box-shadow:
+                0 4px 18px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.08
+                );
+
+            border-left:
+                5px solid
+                #2563eb;
+
         }
+
 
         .firmware-header {
+
             display: flex;
-            justify-content: space-between;
+
+            justify-content:
+                space-between;
+
             align-items: center;
+
             gap: 15px;
+
             flex-wrap: wrap;
+
         }
+
 
         .firmware h3 {
+
             margin: 0;
+
             font-size: 21px;
+
         }
+
 
         .version {
+
             background: #dbeafe;
+
             color: #1d4ed8;
-            padding: 6px 12px;
+
+            padding:
+                6px
+                12px;
+
             border-radius: 20px;
+
             font-size: 14px;
+
             font-weight: bold;
+
         }
+
+
+        /* ============================================================
+           TOOL CARD
+           ============================================================ */
+
+        .tool-card {
+
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 25px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 4px 18px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.08
+                );
+
+            border-left:
+                5px solid
+                #16a34a;
+
+        }
+
+
+        .tool-header {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .tool-card h3 {
+
+            margin: 0;
+
+            font-size: 21px;
+
+        }
+
+
+        .tool-type {
+
+            background: #dcfce7;
+
+            color: #15803d;
+
+            padding:
+                6px
+                12px;
+
+            border-radius: 20px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* ============================================================
+           DETAILS
+           ============================================================ */
 
         .details {
+
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    1fr
+                );
+
             gap: 12px;
-            margin: 20px 0;
+
+            margin:
+                20px
+                0;
+
         }
+
 
         .detail {
+
             background: #f8fafc;
+
             padding: 12px;
+
             border-radius: 8px;
+
             word-break: break-word;
+
         }
+
 
         .detail strong {
+
             display: block;
+
             color: #64748b;
+
             font-size: 12px;
+
             margin-bottom: 5px;
-            text-transform: uppercase;
+
+            text-transform:
+                uppercase;
+
         }
+
+
+        /* ============================================================
+           DOWNLOAD BUTTONS
+           ============================================================ */
 
         .download {
+
             display: inline-block;
+
             background: #2563eb;
+
             color: white;
+
             text-decoration: none;
-            padding: 12px 22px;
+
+            padding:
+                12px
+                22px;
+
             border-radius: 8px;
+
             font-weight: bold;
-            transition: 0.2s;
+
+            transition:
+                0.2s;
+
         }
+
 
         .download:hover {
+
             background: #1d4ed8;
-            transform: translateY(-1px);
+
+            transform:
+                translateY(-1px);
+
         }
 
-        footer {
-            text-align: center;
-            color: #64748b;
-            padding: 30px 20px;
-            font-size: 14px;
+
+        .download-tool {
+
+            display: inline-block;
+
+            background: #16a34a;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding:
+                12px
+                22px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            transition:
+                0.2s;
+
         }
+
+
+        .download-tool:hover {
+
+            background: #15803d;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+
+        footer {
+
+            text-align: center;
+
+            color: #64748b;
+
+            padding:
+                30px
+                20px;
+
+            font-size: 14px;
+
+        }
+
+
+        /* ============================================================
+           MOBILE
+           ============================================================ */
 
         @media (max-width: 600px) {
 
             header h1 {
+
                 font-size: 25px;
+
             }
+
 
             .details {
-                grid-template-columns: 1fr;
+
+                grid-template-columns:
+                    1fr;
+
             }
 
+
             .logout-button {
+
                 position: static;
+
                 margin-bottom: 15px;
+
             }
+
+
+            .category-nav {
+
+                flex-direction: column;
+
+            }
+
+
+            .category-button {
+
+                width: 100%;
+
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
@@ -269,15 +781,23 @@
 
     <div class="login-box">
 
+
         <img
             src="files/logo.png"
             alt="Silicon Harvest R&D Logo"
             class="login-logo"
         >
 
-        <h1>Silicon Harvest R&D</h1>
 
-        <p>Firmware Download Center</p>
+        <h1>
+            Silicon Harvest R&D
+        </h1>
+
+
+        <p>
+            Firmware & Tools Download Center
+        </p>
+
 
         <input
             type="text"
@@ -286,12 +806,14 @@
             autocomplete="username"
         >
 
+
         <input
             type="password"
             id="password"
             placeholder="Password"
             autocomplete="current-password"
         >
+
 
         <button
             class="login-button"
@@ -300,9 +822,11 @@
             Login
         </button>
 
+
         <div id="login-error">
             Invalid username or password.
         </div>
+
 
     </div>
 
@@ -315,7 +839,11 @@
 
 <div id="main-page">
 
+
+    <!-- HEADER -->
+
     <header>
+
 
         <button
             class="logout-button"
@@ -324,52 +852,152 @@
             Logout
         </button>
 
+
         <img
             src="files/logo.png"
             alt="Silicon Harvest R&D Logo"
             class="header-logo"
         >
 
-        <h1>Silicon Harvest R&D Firmware Downloads</h1>
 
-        <p>Official firmware download center</p>
+        <h1>
+            Silicon Harvest R&D Downloads
+        </h1>
+
+
+        <p>
+            Official firmware and tools download center
+        </p>
+
 
     </header>
 
 
+    <!-- MAIN CONTAINER -->
+
     <div class="container">
 
-        <div class="info">
 
-            <h2>Firmware Downloads</h2>
+        <!-- ========================================================
+             CATEGORY BUTTONS
+             ======================================================== -->
 
-            <p>
-                Download the latest firmware for your SH RD device.
-                Please verify the device model and firmware version
-                before installation.
-            </p>
+        <div class="category-nav">
+
+
+            <button
+                class="category-button active"
+                id="firmware-button"
+                onclick="showCategory('firmware')"
+            >
+                🔧 Firmware Downloads
+            </button>
+
+
+            <button
+                class="category-button"
+                id="tools-button"
+                onclick="showCategory('tools')"
+            >
+                🛠 Tools Downloads
+            </button>
+
 
         </div>
 
-        <div id="firmware-list"></div>
+
+        <!-- ========================================================
+             FIRMWARE CATEGORY
+             ======================================================== -->
+
+        <div id="firmware-category">
+
+
+            <div class="info">
+
+
+                <h2>
+                    Firmware Downloads
+                </h2>
+
+
+                <p>
+                    Download the latest firmware for your
+                    SH RD device. Please verify the device
+                    model and firmware version before
+                    installation.
+                </p>
+
+
+            </div>
+
+
+            <div id="firmware-list"></div>
+
+
+        </div>
+
+
+        <!-- ========================================================
+             TOOLS CATEGORY
+             ======================================================== -->
+
+        <div
+            id="tools-category"
+            style="display:none;"
+        >
+
+
+            <div class="info">
+
+
+                <h2>
+                    Tools Downloads
+                </h2>
+
+
+                <p>
+                    Download development tools, utilities,
+                    configuration software, drivers and
+                    other tools required for SH RD devices.
+                </p>
+
+
+            </div>
+
+
+            <div id="tools-list"></div>
+
+
+        </div>
+
 
     </div>
 
 
+    <!-- FOOTER -->
+
     <footer>
-        © 2026 SiliconRnD · SH RD Firmware
+
+        © 2026 SiliconRnD · SH RD Firmware & Tools
+
     </footer>
+
 
 </div>
 
 
 <script>
 
+
 /* ============================================================
    LOGIN SETTINGS
 
-   Default username: admin
-   Default password: admin123
+   Default username:
+   admin
+
+   Default password:
+   admin123
 
    IMPORTANT:
    This is client-side authentication only.
@@ -377,6 +1005,7 @@
    ============================================================ */
 
 const LOGIN_USERNAME = "admin";
+
 const LOGIN_PASSWORD = "admin123";
 
 
@@ -386,14 +1015,23 @@ const LOGIN_PASSWORD = "admin123";
 
 function login() {
 
+
     const username =
-        document.getElementById("username").value;
+        document.getElementById(
+            "username"
+        ).value;
+
 
     const password =
-        document.getElementById("password").value;
+        document.getElementById(
+            "password"
+        ).value;
+
 
     const error =
-        document.getElementById("login-error");
+        document.getElementById(
+            "login-error"
+        );
 
 
     if (
@@ -401,18 +1039,27 @@ function login() {
         password === LOGIN_PASSWORD
     ) {
 
+
         sessionStorage.setItem(
             "shrd_logged_in",
             "true"
         );
 
+
+        error.style.display = "none";
+
+
         showMainPage();
+
 
     } else {
 
+
         error.style.display = "block";
 
+
     }
+
 }
 
 
@@ -422,9 +1069,15 @@ function login() {
 
 function showMainPage() {
 
-    document.getElementById("login-page").style.display = "none";
 
-    document.getElementById("main-page").style.display = "block";
+    document.getElementById(
+        "login-page"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "main-page"
+    ).style.display = "block";
 
 }
 
@@ -435,15 +1088,35 @@ function showMainPage() {
 
 function logout() {
 
-    sessionStorage.removeItem("shrd_logged_in");
 
-    document.getElementById("main-page").style.display = "none";
+    sessionStorage.removeItem(
+        "shrd_logged_in"
+    );
 
-    document.getElementById("login-page").style.display = "flex";
 
-    document.getElementById("username").value = "";
+    document.getElementById(
+        "main-page"
+    ).style.display = "none";
 
-    document.getElementById("password").value = "";
+
+    document.getElementById(
+        "login-page"
+    ).style.display = "flex";
+
+
+    document.getElementById(
+        "username"
+    ).value = "";
+
+
+    document.getElementById(
+        "password"
+    ).value = "";
+
+
+    document.getElementById(
+        "login-error"
+    ).style.display = "none";
 
 }
 
@@ -453,7 +1126,9 @@ function logout() {
    ============================================================ */
 
 if (
-    sessionStorage.getItem("shrd_logged_in") === "true"
+    sessionStorage.getItem(
+        "shrd_logged_in"
+    ) === "true"
 ) {
 
     showMainPage();
@@ -467,108 +1142,333 @@ if (
 
 const firmwares = [
 
-    {
-        name: "Old BDC ESP32 & STM32 (ESP32 code)",
-        version: "v1.3.1",
-        file: "SRC_ESP_RTOS_STM32_2_5_OTA_fix.ino.zip",
-        date: "2026-08-21",
-        description: "Final firmware release"
-    },
 
     {
-        name: "Old BDC ESP32 & STM32 (STM32 code)",
-        version: "v1.3.1",
-        file: "SRC_STM32_ESP_RTOS_Raw.ino.bin",
-        date: "2026-08-21",
-        description: "Final firmware release"
+        name:
+            "Old BDC ESP32 & STM32 (ESP32 code)",
+
+        version:
+            "v1.3.1",
+
+        file:
+            "SRC_ESP_RTOS_STM32_2_5_OTA_fix.ino.zip",
+
+        date:
+            "2026-08-21",
+
+        description:
+            "Final firmware release"
     },
 
-    {
-        name: "Current Sensor Board (LED panel)",
-        version: "v1.5.1",
-        file: "CurrentSense_ZeroCal_EEPROM_2.ino.zip",
-        date: "2026-08-21",
-        description: "Final firmware release"
-    },
 
     {
-        name: "New BDC Atmega328",
-        version: "v3.0",
-        file: "SRC6_New_BDC_3.ino.zip",
-        date: "2026-08-21",
-        description: "Final firmware release"
+        name:
+            "Old BDC ESP32 & STM32 (STM32 code)",
+
+        version:
+            "v1.3.1",
+
+        file:
+            "SRC_STM32_ESP_RTOS_Raw.ino.bin",
+
+        date:
+            "2026-08-21",
+
+        description:
+            "Final firmware release"
     },
 
-    {
-        name: "LED Board NodeMCU",
-        version: "v4.0",
-        file: "esp8266_AP_set.ino.bin",
-        date: "2026-08-21",
-        description: "Final firmware release"
-    },
 
     {
-        name: "Old BDC 4 Button 4 Dial Number",
-        version: "v6.0",
-        file: "SRC_4btn_4call_2.ino.zip",
-        date: "2026-08-21",
-        description: "Final firmware release"
+        name:
+            "Current Sensor Board (LED panel)",
+
+        version:
+            "v1.5.1",
+
+        file:
+            "CurrentSense_ZeroCal_EEPROM_2.ino.zip",
+
+        date:
+            "2026-08-21",
+
+        description:
+            "Final firmware release"
     },
 
-    {
-        name: "SH Digital Divine Bell",
-        version: "v1.5.0",
-        file: "SRC_KR_stm32_USB_SD.ino.bin",
-        date: "2026-08-21",
-        description: "Latest firmware release"
-    },
 
     {
-        name: "SH GSM Switch 2.0",
-        version: "v1.5.0",
-        file: "SRC_GSM_switch_Stm32_2_5_pnp.ino.bin",
-        date: "2026-08-21",
-        description: "Latest firmware release"
+        name:
+            "New BDC Atmega328",
+
+        version:
+            "v3.0",
+
+        file:
+            "SRC6_New_BDC_3.ino.zip",
+
+        date:
+            "2026-08-21",
+
+        description:
+            "Final firmware release"
     },
 
-    {
-        name: "Lift Relay Controller Board",
-        version: "v1.0.0",
-        file: "relay_controller2.ino.zip",
-        date: "2026-08-21",
-        description: "Latest firmware release"
-    },
-    
-    {
-        name: "Lift relay controller2 TEST Sequence",
-        version: "v1.0.0",
-        file: "relay_controller2_TEST_Sequence.ino.zip",
-        date: "2026-08-21",
-        description: "Latest firmware release"
-    },
 
     {
-        name: "Sunpresssing Metal Count (ESP32)",
-        version: "v1.5.0",
-        file: "SR_MC_src.ino.zip",
-        date: "2026-08-21",
-        description: "Latest firmware release"
+        name:
+            "LED Board NodeMCU",
+
+        version:
+            "v4.0",
+
+        file:
+            "esp8266_AP_set.ino.bin",
+
+        date:
+            "2026-08-21",
+
+        description:
+            "Final firmware release"
     },
 
-    {
-        name: "Sunpresssing Metal Count (PC Software)",
-        version: "v1.5.0",
-        file: "PC_Software.zip",
-        date: "2026-08-21",
-        description: "Latest firmware release"
-    },
 
     {
-        name: "Sunpresssing Mandrel (ESP32)",
-        version: "v1.5.0",
-        file: "Mandrel.ino.zip",
-        date: "2026-08-21",
-        description: "Latest firmware release"
+        name:
+            "Old BDC 4 Button 4 Dial Number",
+
+        version:
+            "v6.0",
+
+        file:
+            "SRC_4btn_4call_2.ino.zip",
+
+        date:
+            "2026-08-21",
+
+        description:
+            "Final firmware release"
+    },
+
+
+    {
+        name:
+            "SH Digital Divine Bell",
+
+        version:
+            "v1.5.0",
+
+        file:
+            "SRC_KR_stm32_USB_SD.ino.bin",
+
+        date:
+            "2026-08-21",
+
+        description:
+            "Latest firmware release"
+    },
+
+
+    {
+        name:
+            "SH GSM Switch 2.0",
+
+        version:
+            "v1.5.0",
+
+        file:
+            "SRC_GSM_switch_Stm32_2_5_pnp.ino.bin",
+
+        date:
+            "2026-08-21",
+
+        description:
+            "Latest firmware release"
+    },
+
+
+    {
+        name:
+            "Lift Relay Controller Board",
+
+        version:
+            "v1.0.0",
+
+        file:
+            "relay_controller2.ino.zip",
+
+        date:
+            "2026-08-21",
+
+        description:
+            "Latest firmware release"
+    },
+
+
+    {
+        name:
+            "Lift relay controller2 TEST Sequence",
+
+        version:
+            "v1.0.0",
+
+        file:
+            "relay_controller2_TEST_Sequence.ino.zip",
+
+        date:
+            "2026-08-21",
+
+        description:
+            "Latest firmware release"
+    },
+
+
+    {
+        name:
+            "Sunpresssing Metal Count (ESP32)",
+
+        version:
+            "v1.5.0",
+
+        file:
+            "SR_MC_src.ino.zip",
+
+        date:
+            "2026-08-21",
+
+        description:
+            "Latest firmware release"
+    },
+
+
+    {
+        name:
+            "Sunpresssing Metal Count (PC Software)",
+
+        version:
+            "v1.5.0",
+
+        file:
+            "PC_Software.zip",
+
+        date:
+            "2026-08-21",
+
+        description:
+            "Latest firmware release"
+    },
+
+
+    {
+        name:
+            "Sunpresssing Mandrel (ESP32)",
+
+        version:
+            "v1.5.0",
+
+        file:
+            "Mandrel.ino.zip",
+
+        date:
+            "2026-08-21",
+
+        description:
+            "Latest firmware release"
+    }
+
+];
+
+
+/* ============================================================
+   TOOLS FILES
+
+   CHANGE THESE FILENAMES TO YOUR ACTUAL FILES.
+   ============================================================ */
+
+const tools = [
+
+
+    {
+        name:
+            "ESP32 Flash Download Tool",
+
+        version:
+            "v3.9.8",
+
+        file:
+            "ESP32_Flash_Download_Tool.zip",
+
+        date:
+            "2026-08-21",
+
+        type:
+            "ESP32 Tool",
+
+        description:
+            "Tool for flashing firmware to ESP32 devices."
+    },
+
+
+    {
+        name:
+            "STM32 Flash Utility",
+
+        version:
+            "v1.0.0",
+
+        file:
+            "STM32_Flash_Utility.zip",
+
+        date:
+            "2026-08-21",
+
+        type:
+            "STM32 Tool",
+
+        description:
+            "Utility for programming STM32 firmware."
+    },
+
+
+    {
+        name:
+            "USB Serial Driver",
+
+        version:
+            "v1.0.0",
+
+        file:
+            "USB_Serial_Driver.zip",
+
+        date:
+            "2026-08-21",
+
+        type:
+            "Driver",
+
+        description:
+            "USB serial driver package for SH RD development boards."
+    },
+
+
+    {
+        name:
+            "SH RD Configuration Tool",
+
+        version:
+            "v2.0.0",
+
+        file:
+            "SH_RD_Configuration_Tool.zip",
+
+        date:
+            "2026-08-21",
+
+        type:
+            "Configuration Tool",
+
+        description:
+            "Configuration and setup utility for SH RD devices."
     }
 
 ];
@@ -578,91 +1478,328 @@ const firmwares = [
    DISPLAY FIRMWARE
    ============================================================ */
 
-const container =
-    document.getElementById("firmware-list");
+const firmwareContainer =
+    document.getElementById(
+        "firmware-list"
+    );
 
 
-firmwares.forEach((firmware) => {
-
-    const card =
-        document.createElement("div");
-
-    card.className = "firmware";
+firmwares.forEach(
+    (firmware) => {
 
 
-    card.innerHTML = `
-
-        <div class="firmware-header">
-
-            <h3>
-                ${firmware.name}
-            </h3>
-
-            <span class="version">
-                ${firmware.version}
-            </span>
-
-        </div>
+        const card =
+            document.createElement(
+                "div"
+            );
 
 
-        <p>
-            ${firmware.description}
-        </p>
+        card.className =
+            "firmware";
 
 
-        <div class="details">
+        card.innerHTML = `
 
-            <div class="detail">
+            <div class="firmware-header">
 
-                <strong>
-                    Version
-                </strong>
+                <h3>
+                    ${firmware.name}
+                </h3>
 
-                ${firmware.version}
+                <span class="version">
+                    ${firmware.version}
+                </span>
 
             </div>
 
 
-            <div class="detail">
+            <p>
+                ${firmware.description}
+            </p>
 
-                <strong>
-                    Release Date
-                </strong>
 
-                ${firmware.date}
+            <div class="details">
+
+                <div class="detail">
+
+                    <strong>
+                        Version
+                    </strong>
+
+                    ${firmware.version}
+
+                </div>
+
+
+                <div class="detail">
+
+                    <strong>
+                        Release Date
+                    </strong>
+
+                    ${firmware.date}
+
+                </div>
+
+
+                <div class="detail">
+
+                    <strong>
+                        File
+                    </strong>
+
+                    ${firmware.file}
+
+                </div>
 
             </div>
 
 
-            <div class="detail">
+            <a
+                class="download"
+                href="files/${encodeURIComponent(firmware.file)}"
+                download
+            >
+                ⬇ Download Firmware
+            </a>
 
-                <strong>
-                    File
-                </strong>
+        `;
 
-                ${firmware.file}
+
+        firmwareContainer.appendChild(
+            card
+        );
+
+    }
+);
+
+
+/* ============================================================
+   DISPLAY TOOLS
+   ============================================================ */
+
+const toolsContainer =
+    document.getElementById(
+        "tools-list"
+    );
+
+
+tools.forEach(
+    (tool) => {
+
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.className =
+            "tool-card";
+
+
+        card.innerHTML = `
+
+            <div class="tool-header">
+
+                <h3>
+                    ${tool.name}
+                </h3>
+
+                <span class="tool-type">
+                    ${tool.type}
+                </span>
 
             </div>
 
-        </div>
+
+            <p>
+                ${tool.description}
+            </p>
 
 
-        <a
-            class="download"
-            href="files/${encodeURIComponent(firmware.file)}"
-            download
-        >
-            ⬇ Download Firmware
-        </a>
+            <div class="details">
 
-    `;
+                <div class="detail">
+
+                    <strong>
+                        Version
+                    </strong>
+
+                    ${tool.version}
+
+                </div>
 
 
-    container.appendChild(card);
+                <div class="detail">
 
-});
+                    <strong>
+                        Release Date
+                    </strong>
+
+                    ${tool.date}
+
+                </div>
+
+
+                <div class="detail">
+
+                    <strong>
+                        File
+                    </strong>
+
+                    ${tool.file}
+
+                </div>
+
+            </div>
+
+
+            <a
+                class="download-tool"
+                href="files/${encodeURIComponent(tool.file)}"
+                download
+            >
+                ⬇ Download Tool
+            </a>
+
+        `;
+
+
+        toolsContainer.appendChild(
+            card
+        );
+
+    }
+);
+
+
+/* ============================================================
+   CATEGORY SWITCHING
+   ============================================================ */
+
+function showCategory(category) {
+
+
+    const firmwareCategory =
+        document.getElementById(
+            "firmware-category"
+        );
+
+
+    const toolsCategory =
+        document.getElementById(
+            "tools-category"
+        );
+
+
+    const firmwareButton =
+        document.getElementById(
+            "firmware-button"
+        );
+
+
+    const toolsButton =
+        document.getElementById(
+            "tools-button"
+        );
+
+
+    if (
+        category === "firmware"
+    ) {
+
+
+        firmwareCategory.style.display =
+            "block";
+
+
+        toolsCategory.style.display =
+            "none";
+
+
+        firmwareButton.classList.add(
+            "active"
+        );
+
+
+        toolsButton.classList.remove(
+            "active"
+        );
+
+    }
+
+
+    if (
+        category === "tools"
+    ) {
+
+
+        firmwareCategory.style.display =
+            "none";
+
+
+        toolsCategory.style.display =
+            "block";
+
+
+        firmwareButton.classList.remove(
+            "active"
+        );
+
+
+        toolsButton.classList.add(
+            "active"
+        );
+
+    }
+
+}
+
+
+/* ============================================================
+   ENTER KEY LOGIN
+   ============================================================ */
+
+document
+    .getElementById("password")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                login();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("username")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                login();
+
+            }
+
+        }
+    );
+
 
 </script>
 
+
 </body>
+
 </html>
