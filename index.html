@@ -501,6 +501,101 @@
             font-weight: bold;
 
         }
+		
+		/* ============================================================
+		   DOCUMENT CARD
+		   ============================================================ */
+
+		.document-card {
+
+			background: white;
+
+			border-radius: 14px;
+
+			padding: 25px;
+
+			margin-bottom: 20px;
+
+			box-shadow:
+				0 4px 18px
+				rgba(0, 0, 0, 0.08);
+
+			border-left:
+				5px solid
+				#9333ea;
+		}
+
+
+		.document-header {
+
+			display: flex;
+
+			justify-content:
+				space-between;
+
+			align-items: center;
+
+			gap: 15px;
+
+			flex-wrap: wrap;
+		}
+
+
+		.document-card h3 {
+
+			margin: 0;
+
+			font-size: 21px;
+		}
+
+
+		.document-type {
+
+			background: #f3e8ff;
+
+			color: #7e22ce;
+
+			padding:
+				6px
+				12px;
+
+			border-radius: 20px;
+
+			font-size: 14px;
+
+			font-weight: bold;
+		}
+
+
+		.download-document {
+
+			display: inline-block;
+
+			background: #9333ea;
+
+			color: white;
+
+			text-decoration: none;
+
+			padding:
+				12px
+				22px;
+
+			border-radius: 8px;
+
+			font-weight: bold;
+
+			transition: 0.2s;
+		}
+
+
+		.download-document:hover {
+
+			background: #7e22ce;
+
+			transform:
+				translateY(-1px);
+		}
 
 
         /* ============================================================
@@ -892,7 +987,14 @@
             >
                 🔧 Firmware Downloads
             </button>
-
+			
+			<button
+				class="category-button"
+				id="documents-button"
+				onclick="showCategory('documents')"
+			>
+				📄 Documents Downloads
+			</button>
 
             <button
                 class="category-button"
@@ -936,6 +1038,33 @@
 
 
         </div>
+		
+		<!-- ========================================================
+             Documents CATEGORY
+             ======================================================== -->
+		
+		<div
+			id="documents-category"
+			style="display:none;"
+		>
+
+			<div class="info">
+
+				<h2>
+					Documents Downloads
+				</h2>
+
+				<p>
+					Download user manuals, installation guides,
+					datasheets, wiring diagrams and other
+					SH RD technical documents.
+				</p>
+
+			</div>
+
+			<div id="documents-list"></div>
+
+		</div>
 
 
         <!-- ========================================================
@@ -1412,6 +1541,76 @@ const firmwares = [
 
 ];
 
+/* ============================================================
+   Documents FILES
+
+   CHANGE THESE FILENAMES TO YOUR ACTUAL FILES.
+   ============================================================ */
+const documents = [
+
+    {
+        name: "BDC 2.0 User Manual",
+
+        version: "v2.0",
+
+        file: "BDC_v 2 _UI_Manual.pdf",
+
+        date: "2026-08-21",
+
+        type: "User Manual",
+
+        description:
+            "User manual for BDC 2.0"
+    },
+
+    {
+        name: "BDC Controller Wiring Diagram",
+
+        version: "v1.0",
+
+        file: "BDC_Wiring_Manual.pdf",
+
+        date: "2026-08-21",
+
+        type: "Wiring Diagram",
+
+        description:
+            "Wiring and connection diagram for the BDC controller."
+    },
+
+    {
+        name: "BDC v 2.0 OTA Manual",
+
+        version: "v1.0",
+
+        file: "OTA Update User Manual.pdf",
+
+        date: "2026-08-21",
+
+        type: "User Manual",
+
+        description:
+            "Guide for OTA update on BDC devices."
+    },
+	
+	{
+        name: "SH GSM Switch 2.0 User Manual",
+
+        version: "v2.0",
+
+        file: "SH_GSM_Switch_2_User_Manual.pdf",
+
+        date: "2026-08-21",
+
+        type: "User Manual",
+
+        description:
+            "User manual for SH GSM Switch 2.0."
+    }
+
+];
+
+
 
 /* ============================================================
    TOOLS FILES
@@ -1585,6 +1784,95 @@ firmwares.forEach(
     }
 );
 
+/* ============================================================
+   Documents
+   ============================================================ */
+
+const documentsContainer =
+    document.getElementById(
+        "documents-list"
+    );
+
+documents.forEach(
+    (documentFile) => {
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+        card.className =
+            "document-card";
+
+        card.innerHTML = `
+
+            <div class="document-header">
+
+                <h3>
+                    ${documentFile.name}
+                </h3>
+
+                <span class="document-type">
+                    ${documentFile.type}
+                </span>
+
+            </div>
+
+            <p>
+                ${documentFile.description}
+            </p>
+
+            <div class="details">
+
+                <div class="detail">
+
+                    <strong>
+                        Version
+                    </strong>
+
+                    ${documentFile.version}
+
+                </div>
+
+                <div class="detail">
+
+                    <strong>
+                        Release Date
+                    </strong>
+
+                    ${documentFile.date}
+
+                </div>
+
+                <div class="detail">
+
+                    <strong>
+                        File
+                    </strong>
+
+                    ${documentFile.file}
+
+                </div>
+
+            </div>
+
+            <a
+                class="download-document"
+                href="files/${encodeURIComponent(documentFile.file)}"
+                download
+            >
+                ⬇ Download Document
+            </a>
+
+        `;
+
+        documentsContainer.appendChild(
+            card
+        );
+
+    }
+);
+
 
 /* ============================================================
    DISPLAY TOOLS
@@ -1697,7 +1985,11 @@ function showCategory(category) {
         document.getElementById(
             "firmware-category"
         );
-
+		
+	const documentsCategory =
+        document.getElementById(
+            "documents-category"
+        );
 
     const toolsCategory =
         document.getElementById(
@@ -1709,7 +2001,11 @@ function showCategory(category) {
         document.getElementById(
             "firmware-button"
         );
-
+		
+	const documentsButton =
+        document.getElementById(
+            "documents-button"
+        );
 
     const toolsButton =
         document.getElementById(
@@ -1721,10 +2017,11 @@ function showCategory(category) {
         category === "firmware"
     ) {
 
-
         firmwareCategory.style.display =
             "block";
-
+			
+		documentsCategory.style.display =        
+            "none";
 
         toolsCategory.style.display =
             "none";
@@ -1733,7 +2030,38 @@ function showCategory(category) {
         firmwareButton.classList.add(
             "active"
         );
+		
+		documentsButton.classList.remove(
+			"active"
+		);
 
+        toolsButton.classList.remove(
+            "active"
+        );
+
+    }
+	
+	if (
+        category === "documents"
+    ) {
+
+        firmwareCategory.style.display =
+            "none";
+			
+		documentsCategory.style.display =        
+            "block";
+
+        toolsCategory.style.display =
+            "none";
+
+
+        firmwareButton.classList.remove(
+            "active"
+        );
+		
+		documentsButton.classList.add(
+			"active"
+		);
 
         toolsButton.classList.remove(
             "active"
@@ -1749,7 +2077,9 @@ function showCategory(category) {
 
         firmwareCategory.style.display =
             "none";
-
+			
+		documentsCategory.style.display =        
+            "none";
 
         toolsCategory.style.display =
             "block";
@@ -1758,7 +2088,10 @@ function showCategory(category) {
         firmwareButton.classList.remove(
             "active"
         );
-
+		
+		documentsButton.classList.remove(
+			"active"
+		);
 
         toolsButton.classList.add(
             "active"
